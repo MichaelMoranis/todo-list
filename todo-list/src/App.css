@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #c8d6e5;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.modal-container {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  border: 1px solid #5f27cd;
+  padding: 8px;
+  background-color: white;
+}
+
+.input-add-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.input-text {
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgb(108, 108, 108);
+  margin-right: 8px;
+  flex: 1;
+}
+
+.btn-add {
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: #5f27cd;
+  color: white;
+  cursor: pointer;
+  transition: all ease-in-out 200ms;
+}
+
+.btn-add:hover {
+  background-color: #341f97;
+}
+
+.todo-item-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  font-size: 16px;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.todo-item-container:last-of-type {
+  border: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-done {
+  color: #1dd1a1;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.btn-delete {
+  color: #ee5253;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 660px) {
+  .container {
+    width: 100%;
+    max-width: unset;
+    margin: 0;
+  }
+
+  .modal-container {
+    width: 100%;
+  }
+
+  .input-add-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-text {
+    width: 100%;
+    margin: 0 0 8px 0;
+  }
+
+  .btn-add {
+    width: 100%;
+  }
+}
