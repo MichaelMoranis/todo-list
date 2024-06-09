@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import { FaRegEdit } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { FiPlusSquare } from "react-icons/fi";
+import Header from "./components/Header";
+import TodoList from "./components/TodoList";
 
 function App() {
   const [input, SetInput] = useState("");
   const [valueItem, setValueItem] = useState<string[]>([]);
   const [isEditing, setIsEditing] = useState<number | null>(null);
-  const [editInput, setEditInput] = useState("")
+  const [editInput, setEditInput] = useState("");
 
+  // atualizar valor do estado inicial input
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     SetInput(e.target.value);
   }
+
+  // funcao para adicionar items na lista
   function addInput() {
     setValueItem((prevValue) => [...prevValue, input]);
     SetInput("");
   }
 
+  // funcao para pegar items que serao atualizados
   function handleEditInput(e: React.ChangeEvent<HTMLInputElement>) {
     setEditInput(e.target.value);
   }
@@ -27,13 +30,13 @@ function App() {
     setEditInput(valueItem[index]);
   }
 
-  // funcao que salva a edicao do item 
+  // funcao que salva a edicao do item
   function saveEdit(index: number) {
-    const newValueItem = valueItem.slice()
+    const newValueItem = valueItem.slice();
     newValueItem[index] = editInput;
-    setValueItem(newValueItem)
-    setIsEditing(null)
-    setEditInput("")
+    setValueItem(newValueItem);
+    setIsEditing(null);
+    setEditInput("");
   }
 
   function deleteItem(valueItemI: string) {
@@ -42,56 +45,25 @@ function App() {
   }
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center gap-4 bg-zinc-700">
-      <div className="flex flex-col gap-4 p-4 w-96 bg-zinc-800 rounded-md">
-        <div className="flex flex-col justify-center gap-2 bg-zinc-800 text-cyan-50">
-          <h1>Lista de tarefas</h1>
-          <div className="flex justify-between">
-            <input
-              className="text-white rounded-full px-2 bg-zinc-500 border-indigo-500  outline-none"
-              type="text"
-              name="item"
-              id="item"
-              value={input}
-              onChange={handleInput}
+    <>
+      <div className="h-screen flex flex-col items-center p-4 justify-center gap-4 bg-zinc-600">
+        <div className="flex flex-col gap-4 p-4 w-96 bg-zinc-800 rounded-md">
+          <Header input={input} handleInput={handleInput} addInput={addInput} />
+          <div className="bg-zinc-600 rounded-md">
+            <TodoList
+              valueItem={valueItem}
+              isEditing={isEditing}
+              editInput={editInput}
+              handleEditInput={handleEditInput}
+              saveEdit={saveEdit}
+              editItem={editItem}
+              deleteItem={deleteItem}
             />
-            <button className="bg-zinc-700 px-4 rounded-full" type="button" onClick={() => addInput()}>
-              adicionar
-            </button>
           </div>
         </div>
-        <div className="bg-zinc-600 rounded-md">
-        <ul className="flex flex-col rounded-md p-4 gap-4 bg-zinc-900 text-white">
-            {valueItem.map((value, index) => (
-              <li className="flex justify-between px-4 py-2 bg-zinc-800" key={index}>
-                {isEditing === index ? (
-                  <input
-                    className="text-black rounded-md"
-                    type="text"
-                    value={editInput}
-                    onChange={handleEditInput}
-                  />
-                ) : (
-                  <div>{value}</div>
-                )}
-                <div className="flex flex-row gap-4">
-                  {isEditing === index ? (
-                    <button onClick={() => saveEdit(index)}><FiPlusSquare/></button>
-                  ) : (
-                    <button onClick={() => editItem(index)}>
-                      <FaRegEdit />
-                    </button>
-                  )}
-                  <button onClick={() => deleteItem(value)}>
-                    <RiDeleteBin5Line />
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
-    </div>
+      {/* <div className="bg-zinc-800 h-screen"></div> */}
+    </>
   );
 }
 
