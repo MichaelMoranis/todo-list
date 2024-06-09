@@ -20,7 +20,7 @@ export default function TodoList({
   deleteItem,
 }: ListProps) {
   return (
-    <ul className="flex flex-col rounded-md p-4 gap-4 bg-zinc-900 text-white">
+    <ul className="flex flex-col rounded-md gap-4 text-white w-full">
       {valueItem.map((value, index) => (
         <TodoItem
           index={index}

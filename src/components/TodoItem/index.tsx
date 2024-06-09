@@ -24,10 +24,10 @@ export default function TodoItem({
   index,
 }: TodoItemProps) {
   return (
-    <li className="flex justify-between px-4 py-2 bg-zinc-800" key={index}>
+    <li className="flex justify-between p-2 gap-y-4 bg-zinc-700 hover:bg-zinc-500 w-full rounded-md text-white" key={index}>
       {isEditing ? (
         <input
-          className="text-black rounded-md"
+          className="text-black rounded-md px-2 bg-zinc-300"
           type="text"
           value={editInput}
           onChange={handleEditInput}
@@ -41,11 +41,11 @@ export default function TodoItem({
             <FiPlusSquare />
           </button>
         ) : (
-          <button onClick={editItem}>
+          <button className="hover:text-green-400" onClick={editItem}>
             <FaRegEdit />
           </button>
         )}
-        <button onClick={deleteItem}>
+        <button className="text-orange-500" onClick={deleteItem}>
           <RiDeleteBin5Line />
         </button>
       </div>

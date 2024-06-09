@@ -1,31 +1,31 @@
-
+import { FiPlusSquare } from "react-icons/fi";
 
 // esse componente cuidara do titulo e da entrada de novos items.
 interface HeaderProps {
-    input: string;
-    handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    addInput: () => void;
+  input: string;
+  handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  addInput: () => void;
 }
 
-export default function Header({input, handleInput, addInput}: HeaderProps) {
+export default function Header({ input, handleInput, addInput }: HeaderProps) {
   return (
-    <div className="flex flex-col justify-center gap-2 bg-zinc-800 text-cyan-50">
-      <h1>Lista de tarefas</h1>
-      <div className="flex justify-between">
+    <div className="flex flex-col justify-center gap-2 w-full bg-zinc-700 text-black rounded-lg">
+      <div className="flex justify-between rounded-md">
         <input
-          className="text-white rounded-full px-2 bg-zinc-500 border-indigo-500  outline-none"
+          className="text-white p-2 bg-zinc-700 w-96 placeholder-zinc-400 rounded-md outline-none"
           type="text"
           name="item"
           id="item"
           value={input}
           onChange={handleInput}
+          placeholder="criar tarefas"
         />
         <button
-          className="bg-zinc-700 px-4 rounded-full"
+          className="px-4 rounded-r-lg bg-orange-500 font-semibold hover:text-green-500"
           type="button"
           onClick={() => addInput()}
         >
-          adicionar
+          <FiPlusSquare className="w-6 h-6" />
         </button>
       </div>
     </div>

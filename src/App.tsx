@@ -46,10 +46,10 @@ function App() {
 
   return (
     <>
-      <div className="h-screen flex flex-col items-center p-4 justify-center gap-4 bg-zinc-600">
-        <div className="flex flex-col gap-4 p-4 w-96 bg-zinc-800 rounded-md">
-          <Header input={input} handleInput={handleInput} addInput={addInput} />
-          <div className="bg-zinc-600 rounded-md">
+      <div className="h-screen flex flex-col items-center p-4  justify-self-end gap-4 bg-zinc-600">
+      <Header input={input} handleInput={handleInput} addInput={addInput} />
+        <div className="flex flex-col gap-4 p-4 w-full  rounded-md my-12">
+          <div className="rounded-md">
             <TodoList
               valueItem={valueItem}
               isEditing={isEditing}
