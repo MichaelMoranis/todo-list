@@ -8,6 +8,7 @@ interface HeaderProps {
 }
 
 export default function Header({ input, handleInput, addInput }: HeaderProps) {
+
   return (
     <div className="flex flex-col justify-center gap-2 w-full bg-zinc-700 text-black rounded-lg">
       <div className="flex justify-between rounded-md">
