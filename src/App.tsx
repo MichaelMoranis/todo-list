@@ -67,8 +67,7 @@ function App() {
   }
 
   return (
-    <>
-      <div className="flex flex-col items-center p-4  justify-self-end bg-zinc-600">
+      <div className="h-[100%] bg-zinc-600 flex flex-col items-center p-4  justify-self-end">
         <Header input={input} handleInput={handleInput} addInput={addInput} />
         <div className="flex flex-col p-4 w-full  rounded-md my-4">
           <div className="placeholder:only:rounded-md">
@@ -84,7 +83,6 @@ function App() {
           </div>
         </div>
       </div>
-    </>
   );
 }
 
