@@ -13,7 +13,7 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
     <div className="flex flex-col justify-center gap-2 w-full bg-zinc-700 text-black rounded-lg">
       <div className="flex justify-between rounded-md">
         <input
-          className="text-white p-2 bg-zinc-700 w-96 placeholder-zinc-400 rounded-md outline-none"
+          className="text-white p-2 bg-zinc-700 w-full placeholder-zinc-400 rounded-md outline-none"
           type="text"
           name="item"
           id="item"

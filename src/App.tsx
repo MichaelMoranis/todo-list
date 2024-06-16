@@ -8,7 +8,6 @@ function App() {
   const [isEditing, setIsEditing] = useState<number | null>(null);
   const [editInput, setEditInput] = useState("");
 
-
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
@@ -21,20 +20,20 @@ function App() {
         console.error("Failed to parse tasks from localStorage", e);
       }
     }
-  }, [])
+  }, []);
 
-  // aqui estou atualizando o localstorage sempre que "valueItem no [] mudar"
+  // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
   useEffect(() => {
-    if(valueItem.length >= 1) localStorage.setItem("tasks", JSON.stringify(valueItem));
+    if (valueItem.length >= 1)
+      localStorage.setItem("tasks", JSON.stringify(valueItem));
   }, [valueItem]);
 
-
   function addInput() {
-    if(input) {
+    if (input) {
       setValueItem((prevValue) => [...prevValue, input]);
       SetInput("");
     }
-}
+  }
 
   // atualizar valor do estado inicial input
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -63,15 +62,15 @@ function App() {
 
   function deleteItem(valueItemI: string) {
     const newListValue = valueItem.filter((value) => value !== valueItemI);
-    localStorage.removeItem("tasks")
+    localStorage.removeItem("tasks");
     setValueItem(newListValue);
   }
 
   return (
     <>
-      <div className="h-screen flex flex-col items-center p-4  justify-self-end gap-4 bg-zinc-600">
-      <Header input={input} handleInput={handleInput} addInput={addInput} />
-        <div className="flex flex-col gap-4 p-4 w-full  rounded-md my-12">
+      <div className="flex flex-col items-center p-4  justify-self-end bg-zinc-600">
+        <Header input={input} handleInput={handleInput} addInput={addInput} />
+        <div className="flex flex-col p-4 w-full  rounded-md my-4">
           <div className="placeholder:only:rounded-md">
             <TodoList
               valueItem={valueItem}
@@ -85,7 +84,6 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <div className="bg-zinc-800 h-screen"></div> */}
     </>
   );
 }
