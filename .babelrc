@@ -1,0 +1,24 @@
+{
+    "presets": [
+      [
+        //Usa as funcionalidades recentes do JavaScript
+        "@babel/preset-env",
+        {
+          //Converte o código apenas se necessário
+          "targets": {
+            "esmodules": true
+          }
+        }
+      ],
+      [
+        //Habilita o suporte ao React
+        "@babel/preset-react",
+        {
+          //Permite importar automaticamente os métodos necessários
+          "runtime": "automatic"
+        }
+      ],
+      //Permite suporte ao TypeScript e converte esse código em JavaScript
+      "@babel/preset-typescript"
+    ]
+  }

@@ -24,6 +24,7 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
         <button
           className="px-4 rounded-r-lg bg-orange-500 font-semibold hover:text-green-500"
           type="button"
+          aria-label="add"
           onClick={() => addInput()}
         >
           <FiPlusSquare className="w-6 h-6" />

@@ -24,7 +24,10 @@ export default function TodoItem({
   index,
 }: TodoItemProps) {
   return (
-    <li className="flex justify-between p-2 gap-y-4 bg-zinc-700 hover:bg-zinc-500 w-full rounded-md text-white" key={index}>
+    <li
+      className="flex justify-between p-2 gap-y-4 bg-zinc-700 hover:bg-zinc-500 w-full rounded-md text-white"
+      key={index}
+    >
       {isEditing ? (
         <input
           className="text-black rounded-md px-2 bg-zinc-300"
@@ -45,7 +48,12 @@ export default function TodoItem({
             <FaRegEdit />
           </button>
         )}
-        <button className="text-orange-500" onClick={deleteItem}>
+        <button
+          aria-label="delete-item"
+          data-testid={`delete-button-${index}`}
+          className="text-orange-500"
+          onClick={deleteItem}
+        >
           <RiDeleteBin5Line />
         </button>
       </div>
