@@ -32,7 +32,9 @@ describe('App Component', () => {
 
       expect(screen.getByPlaceholderText("criar tarefas")).toBeInTheDocument();
 
-      expect(inputElement.value).toBe("")
+      if (inputElement instanceof HTMLInputElement) {
+        expect(inputElement.value).toBe("");
+      }
     });
 
     test('remover tarefa da lista após adicionar', () => {
@@ -48,6 +50,8 @@ describe('App Component', () => {
     
       // Verificando se o campo de input foi limpo
       const inputElement = screen.getByPlaceholderText("criar tarefas");
-      expect(inputElement.value).toBe("");
+      if (inputElement instanceof HTMLInputElement) {
+        expect(inputElement.value).toBe("");
+      }
     });
   });
