@@ -1,5 +1,6 @@
 import iconHeader from "../../assets/task-list.png"
 import iconPlus from "../../assets/add.png"
+import CurrentDate from "../Date";
 // esse componente cuidara do titulo e da entrada de novos items.
 interface HeaderProps {
   input: string;
@@ -13,7 +14,10 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
       <div className="flex flex-col m-4 gap-2">
         <h1 className="flex items-center gap-4 font-bold text-2xl">
           <img className="h-10 w-10" src={iconHeader} alt="lista icone" />
-          Suas Tarefas 
+          <div>
+          Suas Tarefas:
+          <CurrentDate  /> 
+          </div>
         </h1>
       </div>
       <div className="bg-zinc-100 p-2 rounded-tr-3xl rounded-tl-3xl">
