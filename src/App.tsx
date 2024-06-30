@@ -51,15 +51,6 @@ function App() {
     setEditInput(valueItem[index]);
   }
 
-  // funcao que salva a edicao do item
-  function saveEdit(index: number) {
-    const newValueItem = valueItem.slice();
-    newValueItem[index] = editInput;
-    setValueItem(newValueItem);
-    setIsEditing(null);
-    setEditInput("");
-  }
-
   function deleteItem(valueItemI: string) {
     const newListValue = valueItem.filter((value) => value !== valueItemI);
     localStorage.removeItem("tasks");
@@ -67,16 +58,15 @@ function App() {
   }
 
   return (
-      <div className="h-[100%] bg-zinc-600 flex flex-col items-center p-4  justify-self-end">
+      <div className="bg-zinc-100 flex flex-col items-center justify-self-end">
         <Header input={input} handleInput={handleInput} addInput={addInput} />
-        <div className="flex flex-col p-4 w-full  rounded-md my-4">
+        <div className="flex flex-col px-4 w-full  rounded-md my-4">
           <div className="placeholder:only:rounded-md">
             <TodoList
               valueItem={valueItem}
               isEditing={isEditing}
               editInput={editInput}
               handleEditInput={handleEditInput}
-              saveEdit={saveEdit}
               editItem={editItem}
               deleteItem={deleteItem}
             />

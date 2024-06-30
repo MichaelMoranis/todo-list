@@ -1,13 +1,10 @@
-import { FaRegEdit } from "react-icons/fa";
-import { FiPlusSquare } from "react-icons/fi";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import trash from "../../assets/bin.png";
 
 interface TodoItemProps {
   value: string;
   isEditing: boolean;
   editInput: string;
   index: number;
-  saveEdit: () => void;
   deleteItem: () => void;
   editItem: () => void;
   handleEditInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,46 +12,24 @@ interface TodoItemProps {
 
 export default function TodoItem({
   value,
-  isEditing,
-  editInput,
-  saveEdit,
   deleteItem,
-  editItem,
-  handleEditInput,
+
   index,
 }: TodoItemProps) {
   return (
     <li
-      className="flex justify-between p-2 gap-y-4 bg-zinc-700 hover:bg-zinc-500 w-full rounded-md text-white"
+      className="flex items-center justify-between p-2 gap-y-4 bg-zinc-300 hover:bg-zinc-500 w-full h-16 rounded-md text-zinc-900 font-bold"
       key={index}
     >
-      {isEditing ? (
-        <input
-          className="text-black rounded-md px-2 bg-zinc-300"
-          type="text"
-          value={editInput}
-          onChange={handleEditInput}
-        />
-      ) : (
-        <div>{value}</div>
-      )}
+      <div>{value}</div>
       <div className="flex flex-row gap-4">
-        {isEditing ? (
-          <button onClick={saveEdit}>
-            <FiPlusSquare />
-          </button>
-        ) : (
-          <button className="hover:text-green-400" onClick={editItem}>
-            <FaRegEdit />
-          </button>
-        )}
         <button
           aria-label="delete-item"
           data-testid={`delete-button-${index}`}
-          className="text-orange-500"
+          className="text-orange-400 h-8"
           onClick={deleteItem}
         >
-          <RiDeleteBin5Line />
+          < img src={trash}  className="h-8 w-12" />
         </button>
       </div>
     </li>

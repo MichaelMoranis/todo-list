@@ -5,7 +5,6 @@ interface ListProps {
   isEditing: number | null;
   editInput: string;
   handleEditInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  saveEdit: (index: number) => void;
   editItem: (index: number) => void;
   deleteItem: (valueItem: string) => void;
 }
@@ -15,12 +14,13 @@ export default function TodoList({
   isEditing,
   editInput,
   handleEditInput,
-  saveEdit,
   editItem,
   deleteItem,
 }: ListProps) {
   return (
-    <ul className="flex flex-col rounded-md gap-4 text-white w-full">
+    <>
+    <h2 className="text-zinc-900 font-fold text-lg">items adicionados:</h2>
+    <ul className="flex flex-col rounded-md gap-2 text-white w-full">
       {valueItem.map((value, index) => (
         <TodoItem
           index={index}
@@ -29,11 +29,12 @@ export default function TodoList({
           isEditing={isEditing === index}
           editInput={editInput}
           handleEditInput={handleEditInput}
-          saveEdit={() => saveEdit(index)}
           editItem={() => editItem(index)}
           deleteItem={() => deleteItem(value)}
         />
       ))}
     </ul>
+        
+    </>
   );
 }
