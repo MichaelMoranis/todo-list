@@ -1,6 +1,5 @@
-import { FiPlusSquare } from "react-icons/fi";
 import iconHeader from "../../assets/task-list.png"
-
+import iconPlus from "../../assets/add.png"
 // esse componente cuidara do titulo e da entrada de novos items.
 interface HeaderProps {
   input: string;
@@ -29,12 +28,12 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
             placeholder="inserir produtos"
           />
           <button
-            className="flex justify-center items-center bg-orange-500 font-semibold hover:text-green-500 w-24 text-center rounded-r-full"
+            className="flex justify-around items-center font-semibold w-24 text-center rounded-r-full"
             type="button"
             aria-label="add"
             onClick={() => addInput()}
           >
-            <FiPlusSquare className="w-6 h-6" />
+            <img src={iconPlus} className="w-12 h-12" />
           </button>
         </div>
       </div>
