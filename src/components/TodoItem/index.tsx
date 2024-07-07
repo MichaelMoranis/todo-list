@@ -3,7 +3,7 @@ import bin from "../../assets/bin(1).png";
 interface TodoItemProps {
   value: string;
   deleteItem: () => void;
-  onDragStart: (event: React.DragEvent<HTMLLIElement>) => void;
+  onDragStart: (event: React.DragEvent<HTMLLIElement>, value: string) => void;
   onDragOver: (event: React.DragEvent<HTMLLIElement>) => void;
   onDrop: (event: React.DragEvent<HTMLLIElement>) => void;
 }
@@ -22,7 +22,7 @@ export default function TodoItem({
     <li
       className="flex items-center justify-between px-4 gap-y-4 bg-zinc-300 hover:bg-indigo-500 hover:text-white w-full h-16 rounded-2xl text-zinc-900 font-bold"
       draggable
-      onDragStart={onDragStart}
+      onDragStart={(event) => onDragStart(event, value)}
       onDragOver={onDragOver}
       onDrop={onDrop}
     >

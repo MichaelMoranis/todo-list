@@ -17,6 +17,7 @@ export default function TodoList({
 
   const handleDragStart = (event: React.DragEvent<HTMLLIElement>, value: string) => {
     setDraggedItem(value)
+    event.dataTransfer.effectAllowed = "move"
   }
   const  handleDragOver = (event: React.DragEvent<HTMLLIElement>) => {
     event.preventDefault()
