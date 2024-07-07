@@ -5,8 +5,6 @@ import TodoList from "./components/TodoList";
 function App() {
   const [input, SetInput] = useState("");
   const [valueItem, setValueItem] = useState<string[]>([]);
-  const [isEditing, setIsEditing] = useState<number | null>(null);
-  const [editInput, setEditInput] = useState("");
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -40,21 +38,14 @@ function App() {
     SetInput(e.target.value);
   }
 
-  // funcao para pegar items que serao atualizados
-  function handleEditInput(e: React.ChangeEvent<HTMLInputElement>) {
-    setEditInput(e.target.value);
-  }
-
-  // aqui estamos editando a tarefa especifica que foi clicada // libera a possibilidade de editar o item apenas
-  function editItem(index: number) {
-    setIsEditing(index);
-    setEditInput(valueItem[index]);
-  }
-
   function deleteItem(valueItemI: string) {
     const newListValue = valueItem.filter((value) => value !== valueItemI);
     localStorage.removeItem("tasks");
     setValueItem(newListValue);
+  }
+
+  const updateItems = (items: string[]) => {
+    setValueItem(items)
   }
 
   return (
@@ -64,11 +55,8 @@ function App() {
           <div className="placeholder:only:rounded-md">
             <TodoList
               valueItem={valueItem}
-              isEditing={isEditing}
-              editInput={editInput}
-              handleEditInput={handleEditInput}
-              editItem={editItem}
               deleteItem={deleteItem}
+              updateItems={updateItems}
             />
           </div>
         </div>
