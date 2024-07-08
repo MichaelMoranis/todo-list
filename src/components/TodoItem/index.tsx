@@ -1,5 +1,6 @@
 import bin from "../../assets/bin(1).png";
 
+
 interface TodoItemProps {
   value: string;
   deleteItem: () => void;
@@ -13,10 +14,9 @@ export default function TodoItem({
   deleteItem,
   onDragStart,
   onDragOver,
-  onDrop
+  onDrop,
 
 }: TodoItemProps) {
-
 
   return (
     <li
