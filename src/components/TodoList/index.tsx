@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import TodoItem from "../TodoItem";
+import { TodoListProps } from "../../types";
+
 
 interface ListProps {
-  valueItem: string[];
-  deleteItem: (valueItem: string) => void;
-  updateItems: (items: string[]) => void;
+  valueItem: TodoListProps[];
+  deleteItem: (id: number) => void;
+  updateItems: (items: TodoListProps[]) => void;
 }
 
 export default function TodoList({
@@ -12,14 +14,14 @@ export default function TodoList({
   deleteItem,
   updateItems,
 }: ListProps) {
-  const [draggedItem, setDraggedItem] = useState<string | null>(null);
+  const [draggedItem, setDraggedItem] = useState<TodoListProps | null>(null);
 
   const handleDragStart = (
     event: React.DragEvent<HTMLLIElement>,
-    value: string
+    value: TodoListProps
   ) => {
     setDraggedItem(value);
-    event.dataTransfer.setData("text/plain", value);
+    event.dataTransfer.setData("text/plain", value.id.toString());
     event.dataTransfer.dropEffect = "move";
   };
   const handleDragOver = (event: React.DragEvent<HTMLLIElement>) => {
@@ -27,11 +29,11 @@ export default function TodoList({
     event.dataTransfer.dropEffect = "move";
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLLIElement>, value: string) => {
+  const handleDrop = (event: React.DragEvent<HTMLLIElement>, value: TodoListProps) => {
     event.preventDefault();
     if (draggedItem !== null) {
-      const draggedIndex = valueItem.indexOf(draggedItem);
-      const dropIndex = valueItem.indexOf(value);
+      const draggedIndex = valueItem.findIndex(item => item.id === value.id);
+      const dropIndex = valueItem.findIndex(item => item.id === value.id);
       const newList = [...valueItem];
       newList.splice(draggedIndex, 1);
       if (draggedIndex < dropIndex) {
@@ -50,11 +52,11 @@ export default function TodoList({
     <>
       <h2 className="text-zinc-900 font-fold text-lg">items adicionados:</h2>
       <ul className="flex flex-col rounded-md gap-2 text-white w-full">
-        {valueItem.map((value, index) => (
+        {valueItem.map((value) => (
           <TodoItem
-            key={index}
-            value={value}
-            deleteItem={() => deleteItem(value)}
+            key={value.id}
+            value={value.text}
+            deleteItem={() => deleteItem(value.id)}
             onDragStart={(event) => handleDragStart(event, value)}
             onDragOver={handleDragOver}
             onDrop={(event) => handleDrop(event, value)}

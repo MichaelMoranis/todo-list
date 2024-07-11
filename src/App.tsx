@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
+import { TodoListProps } from "./types";
+
 
 function App() {
   const [input, SetInput] = useState("");
-  const [valueItem, setValueItem] = useState<string[]>([]);
+  const [valueItem, setValueItem] = useState<TodoListProps[]>([]);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -26,25 +28,30 @@ function App() {
       localStorage.setItem("tasks", JSON.stringify(valueItem));
   }, [valueItem]);
 
-  function addInput() {
-    if (input) {
-      setValueItem((prevValue) => [...prevValue, input]);
-      SetInput("");
+    // atualizar valor do estado inicial input
+    function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
+      SetInput(e.target.value);
     }
-  }
 
-  // atualizar valor do estado inicial input
-  function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
-    SetInput(e.target.value);
-  }
+    function addInput(newText: string) {
+      if (input) {
+        setValueItem((prevValue: TodoListProps[]) => {
+          const newInput: TodoListProps = {
+            id: prevValue.length ? Math.max(...prevValue.map(item => item.id)) + 1 : 1,
+            text: newText
+          };
+          return [...prevValue, newInput];
+        });
+        SetInput("");
+      }
+    }
 
-  function deleteItem(valueItemI: string) {
-    const newListValue = valueItem.filter((value) => value !== valueItemI);
-    localStorage.removeItem("tasks");
+  function deleteItem(id: number) {
+    const newListValue = valueItem.filter((value) => value.id !== id);
     setValueItem(newListValue);
   }
 
-  const updateItems = (items: string[]) => {
+  const updateItems = (items: TodoListProps[]) => {
     setValueItem(items)
   }
 

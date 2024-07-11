@@ -2,10 +2,10 @@ import iconHeader from "../../assets/task-list.png"
 import iconPlus from "../../assets/add.png"
 import CurrentDate from "../Date";
 // esse componente cuidara do titulo e da entrada de novos items.
-interface HeaderProps {
+export interface HeaderProps {
   input: string;
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  addInput: () => void;
+  addInput: (newText: string) => void;
 }
 
 export default function Header({ input, handleInput, addInput }: HeaderProps) {
@@ -35,7 +35,7 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
             className="flex justify-around items-center font-semibold w-24 text-center rounded-r-full"
             type="button"
             aria-label="add"
-            onClick={() => addInput()}
+            onClick={() => addInput(input)}
           >
             <img src={iconPlus} className="w-12 h-12" />
           </button>
