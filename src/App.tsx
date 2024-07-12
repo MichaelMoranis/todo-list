@@ -5,26 +5,24 @@ import { TodoListProps } from "./types";
 
 function App() {
   const [input, SetInput] = useState("");
-  const [valueItem, setValueItem] = useState<TodoListProps[]>([]);
-
-  useEffect(() => {
+  const [valueItem, setValueItem] = useState<TodoListProps[]>(() => {
     const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
       try {
         const parsedTasks = JSON.parse(storedTasks);
         if (Array.isArray(parsedTasks)) {
-          setValueItem(parsedTasks);
+          return parsedTasks;
         }
       } catch (e) {
-        console.error("Failed to parse tasks from localStorage", e);
+        console.error("Falha ao analisar as tarefas do localStorage", e);
       }
     }
-  }, [])
-
+    return [];
+  });
   // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
   useEffect(() => {
-    if (valueItem.length >= 1)
-      localStorage.setItem("tasks", JSON.stringify(valueItem));  
+      localStorage.setItem("tasks", JSON.stringify(valueItem)); 
+      console.log("Tarefas salvas no localStorage:", valueItem); 
   }, [valueItem]);
 
   // atualizar valor do estado inicial input
@@ -77,3 +75,4 @@ function App() {
 }
 
 export default App;
+
