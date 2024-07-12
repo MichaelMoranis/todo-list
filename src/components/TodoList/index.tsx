@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TodoItem from "../TodoItem";
 import { TodoListProps } from "../../types";
-import { TaskListHeader } from "../TasksListHeader";
 import { TaskListPlaceholder } from "../TaskListPlaceholder";
 
 
@@ -56,7 +55,7 @@ export default function TodoList({
 
   return (
     <div className="flex  flex-col gap-4 w-full">
-      <TaskListHeader />
+      {/* <TaskListHeader /> */}
       {
         tasks ? (
           <ul className="flex flex-col rounded-md gap-2 text-white w-full">
