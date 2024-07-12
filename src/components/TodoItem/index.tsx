@@ -20,7 +20,7 @@ export default function TodoItem({
 
   return (
     <li
-      className="flex items-center justify-between px-4 gap-y-4 bg-zinc-300 hover:bg-indigo-500 hover:text-white w-full h-16 rounded-2xl text-zinc-900 font-bold"
+      className="flex items-center justify-between px-4 gap-y-4 bg-zinc-300 hover:bg-indigo-500 hover:text-white w-full h-12 rounded-2xl text-zinc-900 font-bold"
       draggable
       onDragStart={(event) => onDragStart(event, value)}
       onDragOver={onDragOver}

@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import TodoItem from "../TodoItem";
 import { TodoListProps } from "../../types";
+import { TaskListHeader } from "../TasksListHeader";
+import { TaskListPlaceholder } from "../TaskListPlaceholder";
 
 
 interface ListProps {
   valueItem: TodoListProps[];
   deleteItem: (id: number) => void;
   updateItems: (items: TodoListProps[]) => void;
+  tasks: TodoListProps[] | null
 }
 
 export default function TodoList({
   valueItem,
   deleteItem,
   updateItems,
+  tasks
 }: ListProps) {
+
+
   const [draggedItem, setDraggedItem] = useState<TodoListProps | null>(null);
 
   const handleDragStart = (
@@ -32,7 +38,7 @@ export default function TodoList({
   const handleDrop = (event: React.DragEvent<HTMLLIElement>, value: TodoListProps) => {
     event.preventDefault();
     if (draggedItem !== null) {
-      const draggedIndex = valueItem.findIndex(item => item.id === value.id);
+      const draggedIndex = valueItem.findIndex(item => item.id === draggedItem.id);
       const dropIndex = valueItem.findIndex(item => item.id === value.id);
       const newList = [...valueItem];
       newList.splice(draggedIndex, 1);
@@ -46,23 +52,30 @@ export default function TodoList({
       updateItems(newList);
       setDraggedItem(null);
     }
-  };
+  }
 
   return (
-    <>
-      <h2 className="text-zinc-900 font-fold text-lg">items adicionados:</h2>
-      <ul className="flex flex-col rounded-md gap-2 text-white w-full">
-        {valueItem.map((value) => (
-          <TodoItem
-            key={value.id}
-            value={value.text}
-            deleteItem={() => deleteItem(value.id)}
-            onDragStart={(event) => handleDragStart(event, value)}
-            onDragOver={handleDragOver}
-            onDrop={(event) => handleDrop(event, value)}
-          />
-        ))}
-      </ul>
-    </>
+    <div className="flex  flex-col gap-4 w-full">
+      <TaskListHeader />
+      {
+        tasks ? (
+          <ul className="flex flex-col rounded-md gap-2 text-white w-full">
+          {valueItem.map((value) => (
+            <TodoItem
+              key={value.id}
+              value={value.text}
+              deleteItem={() => deleteItem(value.id)}
+              onDragStart={(event) => handleDragStart(event, value)}
+              onDragOver={handleDragOver}
+              onDrop={(event) => handleDrop(event, value)}
+            />
+          ))}
+        </ul>
+        ) : (
+          <TaskListPlaceholder /> 
+        )
+      }
+
+    </div>
   );
 }
