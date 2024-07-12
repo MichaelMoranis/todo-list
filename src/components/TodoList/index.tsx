@@ -8,14 +8,12 @@ interface ListProps {
   valueItem: TodoListProps[];
   deleteItem: (id: number) => void;
   updateItems: (items: TodoListProps[]) => void;
-  tasks: TodoListProps[] | null
 }
 
 export default function TodoList({
   valueItem,
   deleteItem,
   updateItems,
-  tasks
 }: ListProps) {
 
 
@@ -57,7 +55,7 @@ export default function TodoList({
     <div className="flex  flex-col gap-4 w-full">
       {/* <TaskListHeader /> */}
       {
-        tasks ? (
+        valueItem.length > 0 ? (
           <ul className="flex flex-col rounded-md gap-2 text-white w-full">
           {valueItem.map((value) => (
             <TodoItem

@@ -6,7 +6,20 @@ import { TodoListProps } from "./types";
 function App() {
   const [input, SetInput] = useState("");
   const [valueItem, setValueItem] = useState<TodoListProps[]>([]);
-  const [tasks, setTasks] = useState<TodoListProps[] | null>(null)
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      try {
+        const parsedTasks = JSON.parse(storedTasks);
+        if (Array.isArray(parsedTasks)) {
+          setValueItem(parsedTasks);
+        }
+      } catch (e) {
+        console.error("Failed to parse tasks from localStorage", e);
+      }
+    }
+  }, [])
 
   // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
   useEffect(() => {
@@ -32,7 +45,6 @@ function App() {
         return [...prevValue, newInput];
       });
       SetInput("");
-      setTasks(valueItem)
     }
   }
 
@@ -40,9 +52,6 @@ function App() {
   function deleteItem(id: number) {
     const newListValue = valueItem.filter((value) => value.id !== id);
     setValueItem(newListValue);
-    if(newListValue.length <= 0) {
-      setTasks(null)
-    }
   }
 
   // funcao para atualizar o novo array de efeito do drag and drop
@@ -60,7 +69,6 @@ function App() {
             valueItem={valueItem}
             deleteItem={deleteItem}
             updateItems={updateItems}
-            tasks={tasks}
           />
         </div>
       </div>
