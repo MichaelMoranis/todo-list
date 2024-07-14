@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TodoItem from "../TodoItem";
 import { TodoListProps } from "../../types";
 import { TaskListPlaceholder } from "../TaskListPlaceholder";
-
+import { TaskListHeader } from "../TasksListHeader";
 
 interface ListProps {
   valueItem: TodoListProps[];
@@ -15,9 +15,10 @@ export default function TodoList({
   deleteItem,
   updateItems,
 }: ListProps) {
-
-
   const [draggedItem, setDraggedItem] = useState<TodoListProps | null>(null);
+
+  const taskCompleted = valueItem.filter((task) => task.isChecked);
+  const totalTaskCompleted = taskCompleted.length;
 
   const handleDragStart = (
     event: React.DragEvent<HTMLLIElement>,
@@ -27,36 +28,46 @@ export default function TodoList({
     event.dataTransfer.setData("text/plain", value.id.toString());
     event.dataTransfer.dropEffect = "move";
   };
+
   const handleDragOver = (event: React.DragEvent<HTMLLIElement>) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLLIElement>, value: TodoListProps) => {
+  const handleDrop = (
+    event: React.DragEvent<HTMLLIElement>,
+    value: TodoListProps
+  ) => {
     event.preventDefault();
     if (draggedItem !== null) {
-      const draggedIndex = valueItem.findIndex(item => item.id === draggedItem.id);
-      const dropIndex = valueItem.findIndex(item => item.id === value.id);
+      const draggedIndex = valueItem.findIndex(
+        (item) => item.id === draggedItem.id
+      );
+      const dropIndex = valueItem.findIndex((item) => item.id === value.id);
       const newList = [...valueItem];
       newList.splice(draggedIndex, 1);
       if (draggedIndex < dropIndex) {
-        // Arrastando de cima para baixo
+        newList.splice(dropIndex, 0, draggedItem);
+      } else {
         newList.splice(dropIndex, 0, draggedItem);
       }
-      // Arrastando de baixo para cima
-      else newList.splice(dropIndex, 0, draggedItem);
-
       updateItems(newList);
       setDraggedItem(null);
     }
-  }
+  };
+
+  const toggleTaskCompletion = (id: number) => {
+    const updatedItems = valueItem.map((item) =>
+      item.id === id ? { ...item, isChecked: !item.isChecked } : item
+    );
+    updateItems(updatedItems);
+  };
 
   return (
-    <div className="flex  flex-col gap-4 w-full">
-      {/* <TaskListHeader /> */}
-      {
-        valueItem.length > 0 ? (
-          <ul className="flex flex-col rounded-md gap-2 text-white w-full">
+    <div className="flex flex-col gap-4 w-full">
+      <TaskListHeader taskCompleted={totalTaskCompleted} />
+      {valueItem.length > 0 ? (
+        <ul className="flex flex-col rounded-md gap-2 text-white w-full">
           {valueItem.map((value) => (
             <TodoItem
               key={value.id}
@@ -65,14 +76,14 @@ export default function TodoList({
               onDragStart={(event) => handleDragStart(event, value)}
               onDragOver={handleDragOver}
               onDrop={(event) => handleDrop(event, value)}
+              isChecked={value.isChecked}
+              toggleCompletion={() => toggleTaskCompletion(value.id)}
             />
           ))}
         </ul>
-        ) : (
-          <TaskListPlaceholder /> 
-        )
-      }
-
+      ) : (
+        <TaskListPlaceholder />
+      )}
     </div>
   );
 }

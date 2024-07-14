@@ -1,5 +1,5 @@
-import iconHeader from "../../assets/task-list.png"
-import iconPlus from "../../assets/add.png"
+import iconHeader from "../../assets/task-list.png";
+import iconPlus from "../../assets/add.png";
 import CurrentDate from "../Date";
 import { HeaderProps } from "../../types";
 
@@ -8,13 +8,15 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
   return (
     <div className="w-full text-zinc-300 bg-indigo-600">
       <div className="flex flex-col m-4 gap-2">
-        <h1 className="flex items-center gap-4 font-bold text-2xl">
-          <img className="h-10 w-10" src={iconHeader} alt="lista icone" />
+        <div className="flex justify-between flex-row-reverse  items-center gap-4 font-bold text-2xl">
           <div>
-          Suas Tarefas:
-          <CurrentDate  /> 
+            <img className="h-16 w-16" src={iconHeader} alt="lista icone" />
           </div>
-        </h1>
+          <div>
+            <h1>Suas Tarefas:</h1>
+            <CurrentDate />
+          </div>
+        </div>
       </div>
       <div className="flex w-full items-center bg-zinc-100 p-2 rounded-tr-3xl rounded-tl-3xl gap-2">
         <div className="flex gap-32 w-full bg-zinc-200 text-black rounded-full gap-x-4">
@@ -29,16 +31,16 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
           />
         </div>
         <button
-            className="flex justify-around items-center font-semibold w-32 p-2 h-18 gap-2 text-center rounded-full bg-blue-700"
-            type="button"
-            aria-label="add"
-            onClick={() => addInput(input)}
-          >
-            <p className="text-xl text-white">criar</p>
-            <div className="w-6 h-6">
-            <img src={iconPlus}  />
-            </div>
-          </button>
+          className="flex justify-around items-center font-semibold w-32 p-2 gap-2 text-center rounded-full bg-blue-700 hover:bg-orange-500"
+          type="button"
+          aria-label="add"
+          onClick={() => addInput(input)}
+        >
+          <p className="text-xl text-white">criar</p>
+          <div className="w-6 h-6">
+            <img src={iconPlus} />
+          </div>
+        </button>
       </div>
     </div>
   );

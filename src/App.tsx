@@ -39,6 +39,7 @@ function App() {
             ? Math.max(...prevValue.map((item) => item.id)) + 1
             : 1,
           text: newText,
+          isChecked: false
         };
         return [...prevValue, newInput];
       });
@@ -59,7 +60,7 @@ function App() {
 
 
   return (
-    <div className="bg-zinc-100 flex flex-col items-center justify-self-end">
+    <div className="min-h-screen  bg-zinc-100 flex flex-col items-center justify-self-end">
       <Header input={input} handleInput={handleInput} addInput={addInput} />
       <div className="flex flex-col px-4 w-full  rounded-md my-4">
         <div className="placeholder:only:rounded-md">

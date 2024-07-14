@@ -1,13 +1,13 @@
-import planning from "../../assets/planning.png";
+import placeholder from "../../assets/placeholder.png";
 
 export function TaskListPlaceholder() {
   return (
-    <div className="flex flex-col gap-2 mx-6 justify-center w-full">
-      <div className="flex  items-center gap-2">
-        <img src={planning} alt="Lista de tarefas vazia" className="w-10 h-10" />
-        <div className="font-bold">voce ainda nao tem tarefas cadastradas</div>
+    <div className="flex gap-2 justify-center w-full">
+      <div className="flex flex-col justify-center text-center items-center gap-2">
+        <img src={placeholder} alt="Lista de tarefas vazia" className="w-28 h-28" />
+        <div className="font-bold">Você ainda não tem tarefas cadastradas.</div>
+        <div className="font-bold">Adicione suas tarefas.</div>
       </div>
-      <div className="font-bold">crie: organize tarefas a fazer.</div>
     </div>
   );
 }

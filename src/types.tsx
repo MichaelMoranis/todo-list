@@ -1,6 +1,7 @@
 export interface TodoListProps  {
     id: number;
     text: string;
+    isChecked: boolean;
   }
 
   export interface HeaderProps {
