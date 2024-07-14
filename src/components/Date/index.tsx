@@ -6,7 +6,8 @@ export default function CurrentDate() {
 
                 {currentDate}
             </div>
-            <div>
+            <div className="text-xs font-bold">
+                by moranisdev
             </div>
         </div>
     )

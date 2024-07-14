@@ -58,21 +58,23 @@ function App() {
     setValueItem(items);
   };
 
-
   return (
-    <div className="min-h-screen  bg-zinc-100 flex flex-col items-center justify-self-end">
-      <Header input={input} handleInput={handleInput} addInput={addInput} />
-      <div className="flex flex-col px-4 w-full  rounded-md my-4">
-        <div className="placeholder:only:rounded-md">
-          <TodoList
-            valueItem={valueItem}
-            deleteItem={deleteItem}
-            updateItems={updateItems}
-          />
+    <div className="min-h-screen bg-zinc-100 flex justify-center">
+      <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
+        <Header input={input} handleInput={handleInput} addInput={addInput} />
+        <div className="flex flex-col w-full rounded-md my-4">
+          <div className="placeholder:only:rounded-md">
+            <TodoList
+              valueItem={valueItem}
+              deleteItem={deleteItem}
+              updateItems={updateItems}
+            />
+          </div>
         </div>
       </div>
     </div>
   );
+  
 }
 
 export default App;
