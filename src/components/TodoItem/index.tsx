@@ -22,8 +22,8 @@ export default function TodoItem({
 }: TodoItemProps) {
   return (
     <li
-      className={`flex items-center justify-between px-4 gap-y-4 w-full h-12 rounded-2xl text-zinc-900 font-bold ${
-        isChecked ? "bg-indigo-500 text-white" : "bg-zinc-300"
+      className={`flex items-center justify-between px-2 gap-y-4 w-full h-12 rounded-2xl font-bold ${
+        isChecked ? "text-white bg-indigo-300 " : "text-zinc-700 bg-zinc-400"
       }`}
       draggable
       onDragStart={(event) => onDragStart(event, value)}
@@ -36,7 +36,7 @@ export default function TodoItem({
           onChange={toggleCompletion}
           id="checked-checkbox"
           type="checkbox"
-          className="w-6 h-6 rounded-full"
+          className="w-6 h-6 rounded-full bg-green-500"
         />
         <label
           htmlFor="checked-checkbox"

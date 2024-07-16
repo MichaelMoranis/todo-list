@@ -32,7 +32,7 @@ function App() {
 
   // funcao para adicionar elementos na lista
   function addInput(newText: string) {
-    if (input) {
+    if (input.trim() != "") {
       setValueItem((prevValue: TodoListProps[]) => {
         const newInput: TodoListProps = {
           id: prevValue.length
