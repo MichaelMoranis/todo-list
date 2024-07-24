@@ -1,29 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import { TodoListProps } from "./types";
 
 function App() {
   const [input, SetInput] = useState("");
-  const [valueItem, setValueItem] = useState<TodoListProps[]>(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      try {
-        const parsedTasks = JSON.parse(storedTasks);
-        if (Array.isArray(parsedTasks)) {
-          return parsedTasks;
-        }
-      } catch (e) {
-        console.error("Falha ao analisar as tarefas do localStorage", e);
-      }
-    }
-    return [];
-  });
+  const [valueItem, setValueItem] = useState<TodoListProps[]>([]);
   // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
-  useEffect(() => {
-      localStorage.setItem("tasks", JSON.stringify(valueItem)); 
-      console.log("Tarefas salvas no localStorage:", valueItem); 
-  }, [valueItem]);
+
 
   // atualizar valor do estado inicial input
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -31,21 +15,51 @@ function App() {
   }
 
   // funcao para adicionar elementos na lista
-  function addInput(newText: string) {
-    if (input.trim() != "") {
-      setValueItem((prevValue: TodoListProps[]) => {
-        const newInput: TodoListProps = {
-          id: prevValue.length
-            ? Math.max(...prevValue.map((item) => item.id)) + 1
-            : 1,
-          text: newText,
-          isChecked: false
-        };
-        return [...prevValue, newInput];
-      });
-      SetInput("");
-    }
+async function addInput(newText: string) {
+  // Verifica se o texto não está vazio
+  if (newText.trim() === "") {
+    console.log("Texto vazio não pode ser adicionado.");
+    return;
   }
+
+  const newInput = 
+    {
+      newtext: newText, 
+      isChecked: false
+    }
+  ;
+
+  try {
+    const response = await fetch("https://todo-server-hpwp.onrender.com/tasks", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newInput)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro: ${response.statusText}`);
+    }
+
+    // Verifica se o backend retorna um JSON com a nova tarefa criada
+    const createTask = await response.json();
+
+    // Atualiza o estado com a nova tarefa
+    setValueItem((prevValue: TodoListProps[]) => [
+      ...prevValue,
+      createTask
+    ]);
+
+    // Limpa o campo de entrada
+    SetInput(""); // Certifique-se de que SetInput esteja definido e faça sentido no contexto
+
+  } catch (error) {
+    console.error("Erro ao adicionar tarefas:", error);
+  }
+}
+  
+
 
   // funcao para deletar itens na lista
   function deleteItem(id: number) {

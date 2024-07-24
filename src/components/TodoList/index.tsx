@@ -71,7 +71,7 @@ export default function TodoList({
           {valueItem.map((value) => (
             <TodoItem
               key={value.id}
-              value={value.text}
+              value={value.newtext}
               deleteItem={() => deleteItem(value.id)}
               onDragStart={(event) => handleDragStart(event, value)}
               onDragOver={handleDragOver}

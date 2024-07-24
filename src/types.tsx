@@ -1,6 +1,6 @@
 export interface TodoListProps  {
     id: number;
-    text: string;
+    newtext: string;
     isChecked: boolean;
   }
 
