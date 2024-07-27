@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import { TodoListProps } from "./types";
@@ -9,11 +9,28 @@ function App() {
   // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
 
 
+  useEffect(() => {
+    listInput()
+  }, [])
   // atualizar valor do estado inicial input
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     SetInput(e.target.value);
   }
 
+async function listInput() {
+  try {
+    const response = await fetch ("https://todo-server-hpwp.onrender.com/tasks")
+    const dataTask = await response.json();
+
+    if(!response.ok) {
+      throw new Error(`erro: ${response.text}`)
+    }
+    setValueItem(dataTask);
+    console.log(dataTask)
+  } catch(error) {
+    console.log("deu erro no get")
+  }
+}
   // funcao para adicionar elementos na lista
 async function addInput(newText: string) {
   // Verifica se o texto não está vazio
@@ -41,30 +58,29 @@ async function addInput(newText: string) {
     if (!response.ok) {
       throw new Error(`Erro: ${response.statusText}`);
     }
-
-    // Verifica se o backend retorna um JSON com a nova tarefa criada
-    const createTask = await response.json();
-
-    // Atualiza o estado com a nova tarefa
-    setValueItem((prevValue: TodoListProps[]) => [
-      ...prevValue,
-      createTask
-    ]);
-
-    // Limpa o campo de entrada
     SetInput(""); // Certifique-se de que SetInput esteja definido e faça sentido no contexto
 
   } catch (error) {
     console.error("Erro ao adicionar tarefas:", error);
   }
+  listInput()
 }
-  
 
 
   // funcao para deletar itens na lista
-  function deleteItem(id: number) {
-    const newListValue = valueItem.filter((value) => value.id !== id);
-    setValueItem(newListValue);
+async function deleteItem(id: number) {
+    try {
+      const deleteTask = await fetch(`https://todo-server-hpwp.onrender.com/tasks/${id}`, {
+        method: 'DELETE'
+      })   
+
+      if(!deleteTask.ok) {
+        console.log("erro ao deletar")
+      }
+      listInput()   
+    } catch {
+      console.log("erro ao deletar")
+    }
   }
 
   // funcao para atualizar o novo array de efeito do drag and drop
