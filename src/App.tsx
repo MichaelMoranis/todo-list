@@ -26,7 +26,6 @@ async function listInput() {
       throw new Error(`erro: ${response.text}`)
     }
     setValueItem(dataTask);
-    console.log(dataTask)
   } catch(error) {
     console.log("deu erro no get")
   }
@@ -34,10 +33,11 @@ async function listInput() {
   // funcao para adicionar elementos na lista
 async function addInput(newText: string) {
   // Verifica se o texto não está vazio
-  if (newText.trim() === "") {
-    console.log("Texto vazio não pode ser adicionado.");
-    return;
-  }
+   newText.trim() === ""  ?  (
+    <>
+      <div>tudo errado</div>
+    </>
+    ) : ""
 
   const newInput = 
     {
