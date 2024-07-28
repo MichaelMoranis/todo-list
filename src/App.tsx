@@ -19,7 +19,7 @@ function App() {
 
 async function listInput() {
   try {
-    const response = await fetch ("https://todo-server-hpwp.onrender.com/tasks")
+    const response = await fetch ("https://todo-server-gdw2.onrender.com/tasks")
     const dataTask = await response.json();
 
     if(!response.ok) {
@@ -47,7 +47,7 @@ async function addInput(newText: string) {
   ;
 
   try {
-    const response = await fetch("https://todo-server-hpwp.onrender.com/tasks", {
+    const response = await fetch("https://todo-server-gdw2.onrender.com/tasks", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ async function addInput(newText: string) {
   // funcao para deletar itens na lista
 async function deleteItem(id: number) {
     try {
-      const deleteTask = await fetch(`https://todo-server-hpwp.onrender.com/tasks/${id}`, {
+      const deleteTask = await fetch(`https://todo-server-gdw2.onrender.com/tasks/${id}`, {
         method: 'DELETE'
       })   
 
