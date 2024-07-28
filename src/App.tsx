@@ -33,12 +33,9 @@ async function listInput() {
   // funcao para adicionar elementos na lista
 async function addInput(newText: string) {
   // Verifica se o texto não está vazio
-   newText.trim() === ""  ?  (
-    <>
-      <div>tudo errado</div>
-    </>
-    ) : ""
-
+   if(newText.trim() === "") {
+    return
+   }
   const newInput = 
     {
       newtext: newText, 
