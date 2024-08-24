@@ -11,16 +11,13 @@ Além do frontend, a aplicação está integrada com um backend que utiliza **Po
 - **Adição e remoção de tarefas**: Gerencie suas tarefas diárias de forma simples e intuitiva.
 - **Edição de tarefas**: Atualize suas tarefas a qualquer momento.
 - **Marcar como concluído**: Organize suas tarefas marcando as concluídas.
-- **Animações suaves**: Transições entre páginas e ações de usuário com animações proporcionadas pelo Framer Motion.
-- **Roteamento**: Navegação fluida entre diferentes páginas utilizando React Router DOM.
+
 - **Persistência de dados**: As tarefas são armazenadas em um banco de dados PostgreSQL, garantindo que as informações permaneçam salvas entre sessões.
 
 ## Tecnologias Utilizadas
 
 ### Frontend:
 - **React.js com TypeScript**: Framework e linguagem utilizada para a construção da interface de usuário.
-- **Framer Motion**: Biblioteca para animações.
-- **React Router DOM**: Biblioteca para gerenciamento de rotas na aplicação.
 
 ### Backend:
 - **Node.js com Fastify**:  Servidor backend que simplifica o gerenciamento de requisições e o fluxo de dados, oferecendo uma abordagem rápida e eficiente para o desenvolvimento de APIs.
