@@ -4,6 +4,8 @@ Este projeto é uma aplicação de lista de tarefas (Todo List) desenvolvida uti
 
 Além do frontend, a aplicação está integrada com um backend que utiliza **PostgreSQL** como banco de dados, permitindo que as tarefas sejam salvas e recuperadas de forma persistente.
 
+![todo-list](src/assets/todo-list.jpg)
+
 ## Funcionalidades
 
 - **Adição e remoção de tarefas**: Gerencie suas tarefas diárias de forma simples e intuitiva.
