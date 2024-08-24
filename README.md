@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# Aplicação lista de tarefas.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação de lista de tarefas (Todo List) desenvolvida utilizando **React.js** com **TypeScript**, oferecendo uma interface moderna e responsiva. A aplicação também conta com animações suaves utilizando **Framer Motion** para transição de componentes e navegação entre páginas implementada com **React Router DOM** na última versão.
 
-Currently, two official plugins are available:
+Além do frontend, a aplicação está integrada com um backend que utiliza **PostgreSQL** como banco de dados, permitindo que as tarefas sejam salvas e recuperadas de forma persistente.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- **Adição e remoção de tarefas**: Gerencie suas tarefas diárias de forma simples e intuitiva.
+- **Edição de tarefas**: Atualize suas tarefas a qualquer momento.
+- **Marcar como concluído**: Organize suas tarefas marcando as concluídas.
+- **Animações suaves**: Transições entre páginas e ações de usuário com animações proporcionadas pelo Framer Motion.
+- **Roteamento**: Navegação fluida entre diferentes páginas utilizando React Router DOM.
+- **Persistência de dados**: As tarefas são armazenadas em um banco de dados PostgreSQL, garantindo que as informações permaneçam salvas entre sessões.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tecnologias Utilizadas
 
-- Configure the top-level `parserOptions` property like this:
+### Frontend:
+- **React.js com TypeScript**: Framework e linguagem utilizada para a construção da interface de usuário.
+- **Framer Motion**: Biblioteca para animações.
+- **React Router DOM**: Biblioteca para gerenciamento de rotas na aplicação.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Backend:
+- **Node.js com Fastify**:  Servidor backend que simplifica o gerenciamento de requisições e o fluxo de dados, oferecendo uma abordagem rápida e eficiente para o desenvolvimento de APIs.
+- **PostgreSQL**: Banco de dados relacional utilizado para persistência das tarefas.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
+
+
+
