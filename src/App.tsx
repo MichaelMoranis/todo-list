@@ -11,6 +11,7 @@ function App() {
 
 
   useEffect(() => {
+    setLoading(true)
     listInput()
   }, [])
   // atualizar valor do estado inicial input
@@ -19,7 +20,6 @@ function App() {
   }
 
   async function listInput() {
-    setLoading(true)
     try {
       const response = await fetch("https://todo-server-gdw2.onrender.com/tasks")
       const dataTask = await response.json();
@@ -79,11 +79,10 @@ function App() {
       if (!deleteTask.ok) {
         console.log("erro ao deletar")
       }
-
+      listInput()
     } catch {
       console.log("erro ao deletar")
     }
-    listInput()
   }
 
   // funcao para atualizar o novo array de efeito do drag and drop
