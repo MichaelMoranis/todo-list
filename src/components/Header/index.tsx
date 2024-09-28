@@ -27,7 +27,7 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
             id="item"
             value={input}
             onChange={handleInput}
-            placeholder="inserir produtos"
+            placeholder="inserir itens"
           />
         </div>
         <button

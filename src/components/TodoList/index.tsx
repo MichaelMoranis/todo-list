@@ -66,7 +66,7 @@ export default function TodoList({
   return (
     <div className="flex flex-col gap-4 w-full">
       {valueItem.length > 0 ? (
-        <ul className="flex flex-col rounded-md gap-2 text-white w-full">
+        <ul className="flex flex-col rounded-md gap-2 text-white w-full p-4">
           <TaskListHeader taskCompleted={totalTaskCompleted} />
           {valueItem.map((value) => (
             <TodoItem

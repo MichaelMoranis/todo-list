@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import { TodoListProps } from "./types";
+import rotate from "./assets/rotate.png"
 
 function App() {
   const [input, SetInput] = useState("");
   const [loading, setLoading] = useState(true)
   const [valueItem, setValueItem] = useState<TodoListProps[]>([]);
-  // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
-
 
   useEffect(() => {
     setLoading(true)
@@ -98,7 +97,7 @@ function App() {
           <div className="flex flex-col w-full rounded-md my-4">
             {
               loading ? (
-                <p className="font-bold text-orange-600 text-center">carregando...</p>
+                <p className="font-bold text-orange-600 text-center h-4 w-4"><img src={rotate} alt="rotate" /></p>
               )
                 : (
                   <TodoList
