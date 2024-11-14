@@ -16,7 +16,7 @@ export default function LoginPage() {
 
  async function handleSubmitInput({username, password}: FormState) {
    try {
-    const response = await fetch('https://todo-server-zdjm.onrender.com', {
+    const response = await fetch('https://todo-server-zdjm.onrender.com/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
