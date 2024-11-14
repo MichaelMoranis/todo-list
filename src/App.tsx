@@ -21,7 +21,7 @@ function App() {
   async function listInput() {
     try {
       const response = await fetch(
-        "http://localhost:3333/tasks",
+        "https://todo-server-zdjm.onrender.com/tasks",
       );
       const dataTask = await response.json();
       if (!response.ok) {
@@ -52,7 +52,7 @@ function App() {
     }
     try {
       const response = await fetch(
-        "http://localhost:3333/tasks",
+        "https://todo-server-zdjm.onrender.com/tasks",
         {
           method: "POST",
           headers: {
@@ -77,7 +77,7 @@ function App() {
   async function deleteItem(id: number) {
     try {
       const deleteTask = await fetch(
-        `http://localhost:3333/tasks/${id}`,
+        `https://todo-server-zdjm.onrender.com/tasks/${id}`,
         {
           method: "DELETE",
         },
