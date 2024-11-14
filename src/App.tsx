@@ -52,7 +52,7 @@ function App() {
     }
     try {
       const response = await fetch(
-        "https://todo-server-zdjm.onrender.com/tasks",
+        "https://todo-server-9m5t.onrender.com/tasks",
         {
           method: "POST",
           headers: {
@@ -77,7 +77,7 @@ function App() {
   async function deleteItem(id: number) {
     try {
       const deleteTask = await fetch(
-        `https://todo-server-zdjm.onrender.com/tasks/${id}`,
+        `https://todo-server-9m5t.onrender.com/tasks/${id}`,
         {
           method: "DELETE",
         },
