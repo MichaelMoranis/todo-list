@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import { TodoListProps } from "./types";
@@ -9,10 +9,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [valueItem, setValueItem] = useState<TodoListProps[]>([]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   listInput();
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    listInput();
+  }, []);
   // atualizar valor do estado inicial input
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     SetInput(e.target.value);
