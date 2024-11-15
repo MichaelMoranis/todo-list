@@ -72,6 +72,8 @@ function App() {
         },
       );
 
+      listInput();
+
       if (!response.ok) {
         throw new Error(`Erro: ${response.statusText}`);
       }
@@ -79,7 +81,6 @@ function App() {
     } catch (error) {
       console.error("Erro ao adicionar tarefas:", error);
     }
-    listInput();
   }
 
   // funcao para deletar itens na lista
