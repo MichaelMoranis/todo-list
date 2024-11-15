@@ -19,9 +19,17 @@ function App() {
   }
 
   async function listInput() {
+    const token = localStorage.getItem("token")
     try {
       const response = await fetch(
         "https://todo-server-zdjm.onrender.com/tasks",
+        {
+           method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+        }
       );
       const dataTask = await response.json();
       if (!response.ok) {
