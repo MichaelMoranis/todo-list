@@ -22,7 +22,7 @@ function App() {
     const token = localStorage.getItem("token")
     try {
       const response = await fetch(
-        "https://todo-server-zdjm.onrender.com/tasks",
+        "https://todo-server-9m5t.onrender.com/tasks",
         {
            method: "GET",
           headers: {
@@ -72,12 +72,11 @@ function App() {
         },
       );
 
-      listInput();
-
       if (!response.ok) {
         throw new Error(`Erro: ${response.statusText}`);
       }
       SetInput(""); // Certifique-se de que SetInput esteja definido e faça sentido no contexto
+      listInput();
     } catch (error) {
       console.error("Erro ao adicionar tarefas:", error);
     }
