@@ -110,11 +110,12 @@ function App() {
     <div className="min-h-screen bg-zinc-100 flex justify-center">
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
         <Header input={input} handleInput={handleInput} addInput={addInput} />
-        <div className="flex flex-col w-full rounded-md my-4">
-          <div className="flex flex-col w-full rounded-md my-4">
+        <div className="justify-center content-center flex flex-col w-full rounded-md my-4">
+          <div className="flex justify-center items-center w-full rounded-md my-4">
             {loading ? (
-              <p className="font-bold text-orange-600 text-center h-4 w-4">
+              <p className="justify-center content-center  font-bold text-orange-600  h-20 w-20">
                 <img src={rotate} alt="rotate" />
+                <h4 className="text-sm font-semibold text-orange-700 my-4">carregando...</h4>
               </p>
             ) : (
               <TodoList
