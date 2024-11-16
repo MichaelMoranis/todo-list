@@ -27,7 +27,6 @@ export default function LoginPage() {
       })
     })
     const data = await response.json()
-    console.log(data)
      const token = data.token
     
          // Armazena o token e navega apenas se ele existir
@@ -59,7 +58,7 @@ export default function LoginPage() {
             className="flex flex-col justify-center  gap-2"
             onSubmit={handleSubmit(handleSubmitInput)}
           >
-            <label htmlFor="seu-nome">seu nome</label>
+            <label htmlFor="username">seu nome</label>
             <input
               className="border rounded-md p-2 w-full text-base py-1 focus:outline-none focus>:ring-0 focus:border-gray-600"
               placeholder="seu nome"

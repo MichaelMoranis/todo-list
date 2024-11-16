@@ -24,7 +24,7 @@ function App() {
       const response = await fetch(
         "https://todo-server-9m5t.onrender.com/tasks",
         {
-           method: "GET",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
@@ -32,7 +32,6 @@ function App() {
         }
       );
       const dataTask = await response.json();
-      console.log(dataTask)
       if (!response.ok) {
         throw new Error(`erro: ${response.text}`);
       }
@@ -56,7 +55,7 @@ function App() {
       isChecked: false,
     };
 
-    if(!token) {
+    if (!token) {
       console.error("token ausente, nao eh possivel adicionar tarefas")
     }
     try {
@@ -86,7 +85,7 @@ function App() {
   async function deleteItem(id: number) {
     try {
       const deleteTask = await fetch(
-        `https://todo-server-9m5t.onrender.com/tasks/${id}`,
+        `https://todo-server-9m5t.onrender.com/tasks${id}`,
         {
           method: "DELETE",
         },

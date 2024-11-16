@@ -17,7 +17,6 @@ export default function Register() {
 
   // funcao para adicionar elementos na lista
   async function handleSubmitInput(newText: FormState) {
-    console.log(newText)
     const newUser = {
       username: newText.username,  // O texto para o nome de usuário
       email: newText.email, // Email do novo usuário
@@ -26,7 +25,7 @@ export default function Register() {
 
     try {
       const response = await fetch(
-        "https://todo-server-9m5t.onrender.com/register",
+        "http://localhost:3333/register",
         {
           method: "POST",
           credentials: "include",
