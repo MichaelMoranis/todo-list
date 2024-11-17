@@ -25,7 +25,7 @@ export default function Register() {
 
     try {
       const response = await fetch(
-        "http://localhost:3333/register",
+        "https://todo-server-9m5t.onrender.com/register",
         {
           method: "POST",
           credentials: "include",
