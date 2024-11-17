@@ -22,7 +22,7 @@ function App() {
     const token = localStorage.getItem("token")
     try {
       const response = await fetch(
-        "https://todo-server-9m5t.onrender.com/tasks",
+        "http://localhost:3333/tasks",
         {
           method: "GET",
           headers: {
@@ -32,6 +32,7 @@ function App() {
         }
       );
       const dataTask = await response.json();
+      console.log(dataTask)
       if (!response.ok) {
         throw new Error(`erro: ${response.text}`);
       }
@@ -60,7 +61,7 @@ function App() {
     }
     try {
       const response = await fetch(
-        "https://todo-server-9m5t.onrender.com/tasks",
+        "http://localhost:3333/tasks",
         {
           method: "POST",
           headers: {
@@ -85,7 +86,7 @@ function App() {
   async function deleteItem(id: number) {
     try {
       const deleteTask = await fetch(
-        `https://todo-server-9m5t.onrender.com/tasks${id}`,
+        `http://localhost:3333/tasks/${id}`,
         {
           method: "DELETE",
         },
