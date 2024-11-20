@@ -11,8 +11,9 @@ interface FormState {
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const { register, handleSubmit } = useForm<FormState>();
+  const { register, handleSubmit, formState } = useForm<FormState>();
   const [error, setError] = useState<string | null>(null)
+  const {isSubmitting } = formState
 
  async function handleSubmitInput({username, password}: FormState) {
    try {
@@ -85,8 +86,10 @@ export default function LoginPage() {
              {error && <div className="flex justify-center bg-red-100 text-red-700 p-2 rounded-md mb-4">{error}</div>}
             <button
               type="submit"
+              disabled={isSubmitting}
               className="border rounded-md p-2 w-full my-6 bg-indigo-600 text-white font-semibold text-xl"
             >
+              {isSubmitting && <span className="loader inline-block w-4 h-4 border-2 border-t-2 border-t-blue-500 border-gray-200 rounded-full animate-spin mr-1"></span>}
               acessar
             </button>
           </form>

@@ -18,7 +18,8 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
           </div>
         </div>
       </div>
-      <div className="flex w-full items-center bg-zinc-100 p-2 rounded-tr-3xl rounded-tl-3xl gap-2">
+      <form 
+       className="flex w-full items-center bg-zinc-100 p-2 rounded-tr-3xl rounded-tl-3xl gap-2">
         <div className="flex gap-32 w-full bg-zinc-200 text-black rounded-full gap-x-4">
           <input
             className="text-black text-center p-2 mx-4 first:bg-zinc-200 w-full rounded-full font-bold placeholder-zinc-500  outline-none"
@@ -41,7 +42,7 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
             <img src={iconPlus} />
           </div>
         </button>
-      </div>
+      </form>
     </div>
   );
 }

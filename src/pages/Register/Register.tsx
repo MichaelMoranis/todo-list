@@ -11,8 +11,9 @@ interface FormState {
 }
 
 export default function Register() {
-  const { register, handleSubmit } = useForm<FormState>();
+  const { register, handleSubmit, formState } = useForm<FormState>();
   const [error, setError] = useState<string | null>(null)
+  const { isSubmitting } = formState
   const navigate = useNavigate()
 
   // funcao para adicionar elementos na lista
@@ -91,8 +92,11 @@ export default function Register() {
             {error && <div className="flex bg-red-200 text-red-700 border-red-950 p-2 justify-center">{error}</div>}
             <button
               type="submit"
-              className="border rounded-md p-2 w-full bg-indigo-600 text-white font-semibold text-xl my-4"
+              disabled={isSubmitting}
+              className={`border rounded-md p-2 w-full bg-indigo-600 text-white font-semibold text-xl my-4 ${isSubmitting ? "bg-indigo-400 cursor-not-allowed" : "hover:bg-indigo-700"
+                }`}
             >
+              {isSubmitting && <span className="loader inline-block w-4 h-4 border-2 border-t-2 border-t-blue-500 border-gray-200 rounded-full animate-spin mr-1"></span>}
               entrar
             </button>
           </form>
